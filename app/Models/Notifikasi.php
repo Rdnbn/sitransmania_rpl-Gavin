@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notifikasi extends Model
 {
-    protected $primaryKey = 'id_notifikasi';
+    protected $table = 'notifikasi';
+    protected $primaryKey = 'id_notif';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_user',
-        'id_peminjaman',
         'judul',
-        'pesan',
-        'jenis',
-        'is_read'
+        'isi',
+        'tipe',
+        'status',
+        'waktu'
     ];
 
     public function user()

@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class UsersSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     public function run(): void
     {
@@ -19,11 +19,13 @@ class UsersSeeder extends Seeder
         ]);
 
         // Pemilik
-        foreach ([
-            ['Budi Santoso', 'budi@gmail.com'],
-            ['Siti Aminah', 'siti@gmail.com'],
-            ['Rizal Ahmad', 'rizal@gmail.com'],
-        ] as $p) {
+        foreach (
+            [
+                ['Budi Santoso', 'budi@gmail.com'],
+                ['Siti Aminah', 'siti@gmail.com'],
+                ['Rizal Ahmad', 'rizal@gmail.com'],
+            ] as $p
+        ) {
             User::create([
                 'nama' => $p[0],
                 'email' => $p[1],
@@ -33,11 +35,13 @@ class UsersSeeder extends Seeder
         }
 
         // Peminjam
-        foreach ([
-            ['Dewi Lestari', 'dewi@gmail.com'],
-            ['Rama Putra', 'rama@gmail.com'],
-            ['Andi Pratama', 'andi@gmail.com'],
-        ] as $p) {
+        foreach (
+            [
+                ['Dewi Lestari', 'dewi@gmail.com'],
+                ['Rama Putra', 'rama@gmail.com'],
+                ['Andi Pratama', 'andi@gmail.com'],
+            ] as $p
+        ) {
             User::create([
                 'nama' => $p[0],
                 'email' => $p[1],

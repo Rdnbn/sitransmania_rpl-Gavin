@@ -6,14 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChatMessage extends Model
 {
+    protected $table = 'chat';
     protected $primaryKey = 'id_chat';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_pengirim',
         'id_penerima',
         'id_peminjaman',
-        'pesan',
-        'file'
+        'isi_pesan',
+        'waktu_kirim',
+        'status_baca'
     ];
 
     public function pengirim()

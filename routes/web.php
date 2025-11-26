@@ -14,9 +14,7 @@ use App\Http\Controllers\Peminjam\DashboardPeminjamController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 
 // HALAMAN UTAMA
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 // Login
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -58,5 +56,4 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/search', [SearchController::class, 'index'])
         ->name('search');
-    
 });
