@@ -6,15 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kendaraan extends Model
 {
+    protected $table = 'kendaraan';
     protected $primaryKey = 'id_kendaraan';
 
     protected $fillable = [
         'id_pemilik',
-        'tipe',
-        'plat',
+        'jenis_kendaraan',
+        'nama_kendaraan',
+        'spesifikasi',
+        'foto_kendaraan',
+        'syarat_ketentuan',
+        'nomor_rekening',
         'status',
-        'harga_sewa',
-        'foto'
+        'tanggal_tersedia',
+        'waktu_tersedia'
     ];
 
     public function pemilik()

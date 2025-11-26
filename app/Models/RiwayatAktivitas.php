@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class RiwayatAktivitas extends Model
 {
-    protected $primaryKey = 'id_aktivitas';
+    protected $table = 'riwayat';
+    protected $primaryKey = 'id_riwayat';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_user',
-        'id_peminjaman',
-        'aksi',
-        'deskripsi',
-        'waktu'
+        'aktivitas',
+        'tanggal',
+        'kategori'
     ];
 
     public function user()
