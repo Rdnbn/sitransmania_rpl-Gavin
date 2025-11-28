@@ -3,3 +3,30 @@ budi@gmail.com pemilik123 Pemilik siti@gmail.com pemilik123 Pemilik
 rizal@gmail.com pemilik123 Peminjam dewi@gmail.com peminjam123 Peminjam
 rama@gmail.com peminjam123 Peminjam andi@gmail.com peminjam123
 register.blade.php: <a href="{{ route('password.request') }}">Lupa password?</a>
+
+sidebar admin:
+<!-- <h5>Admin Panel</h5>
+<a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+    <i class="bi bi-house-door me-2"></i> Dashboard
+</a>
+<a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+    <i class="bi bi-people me-2"></i> Users
+</a>
+<a href="{{ route('admin.kendaraan.index') }}" class="{{ request()->routeIs('admin.kendaraan.*') ? 'active' : '' }}">
+    <i class="bi bi-car-front me-2"></i> Kendaraan
+</a>
+<a href="{{ route('admin.peminjaman.index') }}" class="{{ request()->routeIs('admin.peminjaman.*') ? 'active' : '' }}">
+    <i class="bi bi-journal-check me-2"></i> Peminjaman
+</a>
+<a href="{{ route('admin.pembayaran.index') }}" class="{{ request()->routeIs('admin.pembayaran.*') ? 'active' : '' }}">
+    <i class="bi bi-cash-stack me-2"></i> Pembayaran
+</a>
+<a href="{{ route('admin.transaksi.index') }}" class="{{ request()->routeIs('admin.transaksi.*') ? 'active' : '' }}">
+    <i class="bi bi-receipt me-2"></i> Transaksi
+</a>
+<a href="{{ route('admin.notifikasi.index') }}" class="{{ request()->routeIs('admin.notifikasi.*') ? 'active' : '' }}">
+    <i class="bi bi-bell me-2"></i> Notifikasi
+</a>
+<a href="{{ route('admin.riwayat.index') }}" class="{{ request()->routeIs('admin.riwayat.*') ? 'active' : '' }}">
+    <i class="bi bi-clock-history me-2"></i> Riwayat
+</a>
