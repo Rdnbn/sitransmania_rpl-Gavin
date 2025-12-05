@@ -21,9 +21,10 @@ class Pembayaran extends Model
     ];
 
     public function peminjaman()
-    {
-        return $this->belongsTo(Peminjaman::class, 'id_peminjaman');
-    }
+{
+    return $this->belongsTo(Peminjaman::class, 'peminjaman_id');
+}
+
 
 
 }

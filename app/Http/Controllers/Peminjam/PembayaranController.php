@@ -7,16 +7,17 @@ use App\Models\Peminjaman;
 use App\Models\Pembayaran;
 use App\Models\Notifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PembayaranController extends Controller
 {
-    // TAMPILKAN HALAMAN PEMBAYARAN
+    // HALAMAN PEMBAYARAN
     public function index($id_peminjaman)
     {
         $peminjaman = Peminjaman::with(['kendaraan.pemilik'])->findOrFail($id_peminjaman);
 
-        // QR CODE PEMILIK (ambil dari users.qris_image)
-        $qris = $peminjaman->kendaraan->pemilik->qris_image;
+        // Ambil QR pemilik dari users.qris_image
+        $qris = $peminjaman->kendaraan->pemilik->qris_image ?? null;
 
         return view('peminjam.pembayaran.index', compact('peminjaman', 'qris'));
     }
@@ -25,29 +26,37 @@ class PembayaranController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            'id_peminjaman' => 'required',
+            'id_peminjaman' => 'required|exists:peminjaman,id_peminjaman',
             'bukti' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Upload bukti transfer
+        $peminjaman = Peminjaman::with('kendaraan.pemilik')
+            ->where('id_peminjaman', $request->id_peminjaman)
+            ->firstOrFail();
+
+        // ambil id pemilik dari relasi → BUKAN dari request
+        $id_pemilik = $peminjaman->kendaraan->pemilik->id;
+
+        // upload bukti
         $fileName = time() . '-' . $request->bukti->getClientOriginalName();
         $request->bukti->move(public_path('uploads/bukti'), $fileName);
 
-        // Simpan ke tabel pembayaran
-        $pembayaran = Pembayaran::create([
+        // simpan pembayaran
+        Pembayaran::create([
             'id_peminjaman' => $request->id_peminjaman,
-            'id_pemilik' => $request->id_pemilik,
-            'status' => 'DP',
-            'bukti' => $fileName,
+            'id_pemilik'    => $id_pemilik,
+            'id_peminjam'   => Auth::id(),        // ditambahkan agar relasi jelas
+            'status'        => 'DP',
+            'bukti'         => $fileName,
         ]);
 
-        // NOTIFIKASI UNTUK PEMILIK
+        // notifikasi untuk pemilik
         Notifikasi::create([
-            'id_user'      => $request->id_pemilik,
-            'jenis'        => 'pembayaran',
-            'pesan'        => 'Peminjam telah mengupload bukti pembayaran.',
-            'id_peminjaman'=> $request->id_peminjaman,
-            'is_read'      => 0,
+            'id_user'       => $id_pemilik,
+            'jenis'         => 'pembayaran',
+            'pesan'         => 'Peminjam mengunggah bukti pembayaran.',
+            'id_peminjaman' => $request->id_peminjaman,
+            'is_read'       => 0,
         ]);
 
         return redirect()->route('peminjam.dashboard')

@@ -31,17 +31,23 @@
 
             <td>
                 @if($p->pembayaran)
-                    <a href="{{ asset('uploads/bukti/' . $p->pembayaran->bukti) }}" target="_blank" class="btn btn-sm btn-secondary">Lihat Bukti</a>
+                    <a href="{{ asset('uploads/bukti/' . $p->pembayaran->bukti) }}" target="_blank" 
+                        class="btn btn-sm btn-secondary">Lihat Bukti</a>
                 @else
                     <span class="text-danger">Belum bayar</span>
                 @endif
             </td>
 
             <td>
-            
-            {{-- Flash & Error --}}
-            <x-flash />
-            <x-error />
+                {{-- Flash & Error --}}
+                <x-flash />
+                <x-error />
+
+                {{-- BUTTON CHAT --}}
+                <a href="{{ route('chat.room', $p->id_peminjaman) }}"
+                    class="btn btn-outline-primary btn-sm mb-1">
+                    <i class="bi bi-chat-dots"></i> Chat
+                </a>
 
                 {{-- SETUJUI --}}
                 @if($p->status_peminjaman == 'menunggu')
@@ -57,7 +63,7 @@
                 @endif
 
                 {{-- VERIFIKASI PEMBAYARAN --}}
-                @if($p->status_peminjaman == 'disetujui' && $p->pembayaran && $p->pembayaran->status_pembayaran == 'DP')
+                @if($p->status_peminjaman == 'disetujui' && $p->pembayaran && $p->pembayaran->status == 'DP')
                     <form action="{{ route('pemilik.peminjaman.verifikasi', $p->id_peminjaman) }}" method="POST" class="d-inline mt-1">
                         @csrf
                         <button class="btn btn-warning btn-sm">Verifikasi Pembayaran</button>
@@ -81,7 +87,6 @@
                         <button class="btn btn-dark btn-sm">Selesai</button>
                     </form>
                 @endif
-
             </td>
         </tr>
         @endforeach

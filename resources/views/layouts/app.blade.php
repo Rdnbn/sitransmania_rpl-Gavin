@@ -32,7 +32,7 @@
         /* NAVBAR */
         .navbar-app {
             background: var(--primary);
-            border-bottom: 2px solid rgba(0,0,0,.12);
+            border-bottom: 2px solid rgba(36, 25, 7, 0.12);
             padding: 0.75rem 1.2rem;
         }
         .navbar-app .nav-link,

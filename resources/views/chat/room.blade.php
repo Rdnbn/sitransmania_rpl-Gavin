@@ -1,97 +1,28 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('title', 'Chat')
 
 @section('content')
+<div class="container py-4" style="max-width: 700px;">
+    <h4 class="mb-3"><i class="bi bi-person-circle"></i> {{ $penerima->name }}</h4>
 
-<h3 class="fw-bold mb-3">Chat Dengan {{ $target->nama }}</h3>
-
-{{-- WRAPPER CHAT --}}
-<div id="chat-box" class="card shadow p-3" style="height: 70vh; overflow-y: auto;">
-    
-    <div id="chat-messages">
-        @foreach($pesan as $msg)
-            <div class="mb-3 d-flex 
-                {{ $msg->id_pengirim == auth()->id() ? 'justify-content-end' : 'justify-content-start' }}">
-                
-                <div class="p-2 rounded"
-                    style="max-width: 70%; background: {{ $msg->id_pengirim == auth()->id() ? '#d1e7dd' : '#f8d7da' }}">
-
-                    @if($msg->isi_pesan)
-                        <p class="mb-1">{{ $msg->isi_pesan }}</p>
-                    @endif
-
-                    <div class="text-muted small text-end">
-                        {{ $msg->waktu_kirim }}
-                    </div>
-
+    <div class="border rounded p-3 mb-3" style="height: 60vh; overflow-y: auto; background: #fdf7f3;">
+        @foreach($chat as $c)
+            <div class="mb-2 d-flex {{ $c->id_pengirim == auth()->id() ? 'justify-content-end' : 'justify-content-start' }}">
+                <div class="{{ $c->id_pengirim == auth()->id() ? 'bg-primary text-white' : 'bg-white' }}"
+                     style="padding: 8px 14px; border-radius: 12px; max-width: 60%;">
+                    {{ $c->isi_pesan }}
+                    <div class="small text-muted mt-1">{{ $c->waktu_kirim }}</div>
                 </div>
             </div>
         @endforeach
     </div>
 
+    <form action="{{ route('chat.send') }}" method="POST" class="d-flex">
+        @csrf
+        <input type="hidden" name="id_penerima" value="{{ $penerima->id_user }}">
+        <input type="text" name="isi_pesan" class="form-control me-2" placeholder="Tulis pesan...">
+        <button class="btn btn-primary"><i class="bi bi-send"></i></button>
+    </form>
 </div>
-
-{{-- FORM KIRIM PESAN --}}
-<form action="{{ route('chat.send') }}" method="POST" enctype="multipart/form-data"
-      class="mt-3 d-flex gap-2">
-    @csrf
-    
-    <input type="hidden" name="id_peminjaman" value="{{ $pinjam->id_peminjaman }}">
-    <input type="hidden" name="id_penerima" value="{{ $target->id_user }}">
-
-    <input type="text" name="pesan" class="form-control" placeholder="Ketik pesan..." autofocus>
-
-    <input type="file" name="file" class="form-control" style="max-width:200px;">
-
-    <button class="btn btn-primary">Kirim</button>
-</form>
-
-@endsection
-
-
-{{-- SCRIPT AUTO REFRESH --}}
-@section('scripts')
-<script>
-    const chatBox = document.getElementById('chat-box');
-    const chatMessages = document.getElementById('chat-messages');
-    const idPeminjaman = {{ $pinjam->id_peminjaman }};
-
-    function loadMessages() {
-        fetch('/chat/fetch/' + idPeminjaman)
-            .then(response => response.json())
-            .then(data => {
-                chatMessages.innerHTML = '';
-
-                data.forEach(msg => {
-                    let isMe = msg.id_pengirim == {{ auth()->id() }};
-                    let bubble = `
-                        <div class="mb-3 d-flex ${isMe ? 'justify-content-end' : 'justify-content-start'}">
-                            <div class="p-2 rounded"
-                                 style="max-width:70%; background:${isMe ? '#d1e7dd' : '#f8d7da'}">
-                                
-                                ${msg.pesan ? `<p>${msg.pesan}</p>` : ''}
-
-                                ${msg.file ? 
-                                   `<a href="/uploads/chat/${msg.file}" target="_blank">📎 Lihat Lampiran</a>` 
-                                   : ''}
-
-                                <div class="text-muted small text-end">${msg.created_at}</div>
-                            </div>
-                        </div>
-                    `;
-                    chatMessages.innerHTML += bubble;
-                });
-
-                // AUTO SCROLL
-                chatBox.scrollTop = chatBox.scrollHeight;
-            });
-    }
-
-    // Jalankan setiap 2.5 detik
-    setInterval(loadMessages, 2500);
-
-    // Scroll ke bawah saat halaman pertama kali dibuka
-    window.onload = () => chatBox.scrollTop = chatBox.scrollHeight;
-</script>
 @endsection

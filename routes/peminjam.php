@@ -47,3 +47,5 @@ use App\Http\Controllers\RiwayatController;
         // RIWAYAT
         Route::get('/riwayat', [RiwayatController::class, 'peminjam'])
             ->name('peminjam.riwayat');
+        
+        Route::get('notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');

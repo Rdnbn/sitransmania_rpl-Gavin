@@ -15,8 +15,8 @@
                         <i class="bi bi-speedometer2"></i>
                     </div>
                     <div>
-                        <h2 class="fw-bold mb-1 text-dark">Dashboard Admin</h2>
-                        <p class="mb-0 text-muted">Ringkasan statistik sistem peminjaman</p>
+                        <h2 class="fw-bold mb-1 text-light">Dashboard Admin</h2>
+                        <p class="mb-0 text-light">Ringkasan statistik sistem peminjaman</p>
                     </div>
                 </div>
             </div>

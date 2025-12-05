@@ -8,7 +8,7 @@ class Chat extends Model
 {
     protected $table = 'chat';
     protected $primaryKey = 'id_chat';
-    public $timestamps = false;
+    public $timestamps = false; // karena pakai waktu_kirim, bukan created_at
 
     protected $fillable = [
         'id_pengirim',
@@ -16,21 +16,16 @@ class Chat extends Model
         'id_peminjaman',
         'isi_pesan',
         'waktu_kirim',
-        'status_baca'
+        'status_baca',
     ];
 
     public function pengirim()
     {
-        return $this->belongsTo(User::class, 'id_pengirim');
+        return $this->belongsTo(User::class, 'id_pengirim', 'id_user');
     }
 
     public function penerima()
     {
-        return $this->belongsTo(User::class, 'id_penerima');
-    }
-
-    public function peminjaman()
-    {
-        return $this->belongsTo(Peminjaman::class, 'id_peminjaman');
+        return $this->belongsTo(User::class, 'id_penerima', 'id_user');
     }
 }

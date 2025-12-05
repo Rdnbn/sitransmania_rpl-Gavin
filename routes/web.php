@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\SearchController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Pemilik\DashboardPemilikController;
 use App\Http\Controllers\Peminjam\DashboardPeminjamController;
 use App\Http\Controllers\Admin\DashboardAdminController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\KendaraanAdminController;
 use App\Http\Controllers\Admin\PeminjamanAdminController;
 use App\Http\Controllers\Admin\PembayaranAdminController;
@@ -51,32 +51,31 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 Route::post('/register', [RegisterController::class, 'register'])->name('register.store');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// UNIVERSAL CHAT (boleh semua role)
+// UNIVERSAL CHAT (semua role bisa)
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/pemilik/dashboard', [DashboardPemilikController::class, 'index'])->name('pemilik.dashboard'); // Ensure 'pemilik.dashboard' view exists
-    Route::get('/peminjam/dashboard', [DashboardPeminjamController::class, 'index'])->name('peminjam.dashboard'); // Ensure 'peminjam.dashboard' view exists
-    Route::get('/admin/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard'); // Ensure 'admin.dashboard' view exists
+    // DASHBOARD per role
+    Route::get('/pemilik/dashboard', [DashboardPemilikController::class, 'index'])->name('pemilik.dashboard');
+    Route::get('/peminjam/dashboard', [DashboardPeminjamController::class, 'index'])->name('peminjam.dashboard');
+    Route::get('/admin/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
 
-    // ROOM CHAT
-    Route::get('/chat/{id_peminjaman}', [ChatController::class, 'room'])
-        ->name('chat.room'); // Ensure 'chat.room' view exists and 'id_peminjaman' is passed correctly
-
-    // SEND MESSAGE
-    Route::post('/chat/send', [ChatController::class, 'send'])
-        ->name('chat.send');
-
-    // FETCH (AJAX)
-    Route::get('/chat/fetch/{id}', [ChatController::class, 'fetch'])
-        ->name('chat.fetch');
+    // CHAT
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');                // daftar chat (list user/room)
+    Route::get('/chat/room/{id}', [ChatController::class, 'room'])->name('chat.room');       // buka percakapan dengan user ID tertentu
+    Route::post('/chat/send', [ChatController::class, 'send'])->name('chat.send');           // kirim pesan
 
     // NOTIFIKASI
-    Route::get('/notifikasi/{id}', [NotifikasiController::class, 'read'])
-        ->name('notif.read'); // Ensure 'notif.read' view exists and 'id' is passed correctly
+    Route::get('/notifikasi/{id}', [NotifikasiController::class, 'read'])->name('notif.read');
 
-    Route::get('/search', [SearchController::class, 'index'])
-        ->name('search');
+    // SEARCH
+    Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+    // PROFILE
+    Route::get('/profile', [UserController::class, 'index'])->name('profile');
+    Route::post('/profile/update', [UserController::class, 'update'])->name('profile.update');
+    Route::post('/profile/update-password', [UserController::class, 'updatePassword'])->name('profile.updatePassword');
 });
+
 
 // ========== ADMIN ROUTES ==========
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(function () {
@@ -117,10 +116,6 @@ Route::middleware(['auth', 'role:pemilik'])->prefix('pemilik')->as('pemilik.')->
     Route::post('peminjaman/verifikasi/{id}', [PeminjamanManageController::class, 'verifikasi'])->name('peminjaman.verifikasi');
     Route::post('peminjaman/status/{id}', [PeminjamanManageController::class, 'updateStatus'])->name('peminjaman.updateStatus');
 
-    // CHAT
-    Route::get('chat', [ChatPemilikController::class, 'index'])->name('chat.index');
-    Route::get('chat/{room}', [ChatPemilikController::class, 'show'])->name('chat.show');
-
     // PEMBAYARAN
     Route::get('pembayaran', [PembayaranPemilikController::class, 'index'])->name('pembayaran.index');
 
@@ -147,10 +142,6 @@ Route::middleware(['auth', 'role:peminjam'])->prefix('peminjam')->as('peminjam.'
     // PEMBAYARAN
     Route::get('pembayaran/{id_peminjaman}', [PembayaranController::class, 'index'])->name('pembayaran.index');
     Route::post('pembayaran/upload', [PembayaranController::class, 'upload'])->name('pembayaran.upload');
-
-    // CHAT
-    Route::get('chat', [ChatPeminjamController::class, 'index'])->name('chat.index');
-    Route::get('chat/{room}', [ChatPeminjamController::class, 'show'])->name('chat.show');
 
     // RIWAYAT
     Route::get('riwayat', [RiwayatController::class, 'peminjam'])->name('riwayat');

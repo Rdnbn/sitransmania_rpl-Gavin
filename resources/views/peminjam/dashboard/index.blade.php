@@ -17,52 +17,48 @@
 
         <!-- Stats Summary -->
         <div class="row g-3 mb-4">
-            <!-- Total Peminjaman -->
             <div class="col-md-3 col-sm-6">
                 <div class="stat-card" style="background: white; border-left: 4px solid #6C4E3F; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(108, 78, 63, 0.1); transition: all 0.3s ease;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="display: flex; justify-content: space-between;">
                         <div>
                             <p style="color: #8B6354; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 500;">Total Peminjaman</p>
-                            <h3 style="color: #3d2817; font-size: 2rem; font-weight: 700; margin: 0;">{{ $totalPinjam }}</h3>
+                            <h3 style="color: #3d2817; font-size: 2rem; margin: 0;">{{ $totalPinjam }}</h3>
                         </div>
                         <i class="bi bi-car-front-fill" style="font-size: 2rem; color: #C9A58C; opacity: 0.8;"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- Total Pembayaran -->
             <div class="col-md-3 col-sm-6">
                 <div class="stat-card" style="background: white; border-left: 4px solid #C9A58C; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(108, 78, 63, 0.1); transition: all 0.3s ease;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="display: flex; justify-content: space-between;">
                         <div>
                             <p style="color: #8B6354; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 500;">Total Pembayaran</p>
-                            <h3 style="color: #3d2817; font-size: 2rem; font-weight: 700; margin: 0;">{{ $totalPay }}</h3>
+                            <h3 style="color: #3d2817; font-size: 2rem; margin: 0;">{{ $totalPay }}</h3>
                         </div>
                         <i class="bi bi-credit-card" style="font-size: 2rem; color: #C9A58C; opacity: 0.8;"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- Total Chat -->
             <div class="col-md-3 col-sm-6">
                 <div class="stat-card" style="background: white; border-left: 4px solid #E7D6C8; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(108, 78, 63, 0.1); transition: all 0.3s ease;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="display: flex; justify-content: space-between;">
                         <div>
                             <p style="color: #8B6354; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 500;">Total Chat</p>
-                            <h3 style="color: #3d2817; font-size: 2rem; font-weight: 700; margin: 0;">{{ $totalChat }}</h3>
+                            <h3 style="color: #3d2817; font-size: 2rem; margin: 0;">{{ $totalChat }}</h3>
                         </div>
                         <i class="bi bi-chat-dots" style="font-size: 2rem; color: #C9A58C; opacity: 0.8;"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- Status Terakhir -->
             <div class="col-md-3 col-sm-6">
                 <div class="stat-card" style="background: white; border-left: 4px solid #6C4E3F; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(108, 78, 63, 0.1); transition: all 0.3s ease;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="display: flex; justify-content: space-between;">
                         <div>
                             <p style="color: #8B6354; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 500;">Status Terakhir</p>
-                            <h3 style="color: #3d2817; font-size: 1.2rem; font-weight: 700; margin: 0;">
+                            <h3 style="color: #3d2817; font-size: 1.2rem; margin: 0;">
                                 @if($lastStatus)
                                     <span style="background: #E7D6C8; color: #6C4E3F; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; text-transform: capitalize;">
                                         {{ $lastStatus }}
@@ -85,69 +81,51 @@
             </h2>
 
             <div class="row g-3">
-                <!-- Cari Kendaraan -->
                 <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('peminjam.browse.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(108, 78, 63, 0.1) 0%, rgba(201, 165, 140, 0.1) 100%); opacity: 0; transition: opacity 0.3s ease; z-index: 0;"></div>
-                        
-                        <i class="bi bi-search" style="font-size: 3rem; color: #6C4E3F; z-index: 1;"></i>
-                        <h3 style="color: #3d2817; margin: 0; font-weight: 600; z-index: 1;">Cari Kendaraan</h3>
-                        <p style="color: #8B6354; font-size: 0.85rem; margin: 0; z-index: 1;">Jelajahi daftar kendaraan yang tersedia</p>
+                    <a href="{{ route('peminjam.browse.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
+                        <i class="bi bi-search" style="font-size: 3rem; color: #6C4E3F;"></i>
+                        <h3 style="color: #3d2817; margin: 0;">Cari Kendaraan</h3>
+                        <p style="color: #8B6354; font-size: 0.85rem;">Jelajahi daftar kendaraan yang tersedia</p>
                     </a>
                 </div>
 
-                <!-- Peminjaman Saya -->
                 <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('peminjam.peminjaman.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(108, 78, 63, 0.1) 0%, rgba(201, 165, 140, 0.1) 100%); opacity: 0; transition: opacity 0.3s ease; z-index: 0;"></div>
-                        
-                        <i class="bi bi-file-earmark-text" style="font-size: 3rem; color: #6C4E3F; z-index: 1;"></i>
-                        <h3 style="color: #3d2817; margin: 0; font-weight: 600; z-index: 1;">Peminjaman Saya</h3>
-                        <p style="color: #8B6354; font-size: 0.85rem; margin: 0; z-index: 1;">Kelola peminjaman aktif dan riwayat</p>
+                    <a href="{{ route('peminjam.peminjaman.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
+                        <i class="bi bi-file-earmark-text" style="font-size: 3rem; color: #6C4E3F;"></i>
+                        <h3 style="color: #3d2817; margin: 0;">Peminjaman Saya</h3>
+                        <p style="color: #8B6354; font-size: 0.85rem;">Kelola peminjaman aktif dan riwayat</p>
                     </a>
                 </div>
 
-                <!-- Pembayaran -->
                 <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('peminjam.pembayaran.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(108, 78, 63, 0.1) 0%, rgba(201, 165, 140, 0.1) 100%); opacity: 0; transition: opacity 0.3s ease; z-index: 0;"></div>
-                        
-                        <i class="bi bi-wallet2" style="font-size: 3rem; color: #6C4E3F; z-index: 1;"></i>
-                        <h3 style="color: #3d2817; margin: 0; font-weight: 600; z-index: 1;">Pembayaran</h3>
-                        <p style="color: #8B6354; font-size: 0.85rem; margin: 0; z-index: 1;">Kelola pembayaran dan tagihan</p>
+                    <a href="{{ route('peminjam.peminjaman.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
+                        <i class="bi bi-wallet2" style="font-size: 3rem; color: #6C4E3F;"></i>
+                        <h3 style="color: #3d2817; margin: 0;">Pembayaran</h3>
+                        <p style="color: #8B6354; font-size: 0.85rem;">Kelola pembayaran dan tagihan</p>
                     </a>
                 </div>
 
-                <!-- Chat -->
                 <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('chat.room', 1) }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(108, 78, 63, 0.1) 0%, rgba(201, 165, 140, 0.1) 100%); opacity: 0; transition: opacity 0.3s ease; z-index: 0;"></div>
-                        
-                        <i class="bi bi-chat-left-dots" style="font-size: 3rem; color: #6C4E3F; z-index: 1;"></i>
-                        <h3 style="color: #3d2817; margin: 0; font-weight: 600; z-index: 1;">Chat</h3>
-                        <p style="color: #8B6354; font-size: 0.85rem; margin: 0; z-index: 1;">Komunikasi dengan pemilik kendaraan</p>
+                    <a href="{{ route('chat.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
+                        <i class="bi bi-chat-left-dots" style="font-size: 3rem; color: #6C4E3F;"></i>
+                        <h3 style="color: #3d2817; margin: 0;">Chat</h3>
+                        <p style="color: #8B6354; font-size: 0.85rem;">Komunikasi dengan pemilik kendaraan</p>
                     </a>
                 </div>
 
-                <!-- Notifikasi -->
                 <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('notif.read', 1) }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(108, 78, 63, 0.1) 0%, rgba(201, 165, 140, 0.1) 100%); opacity: 0; transition: opacity 0.3s ease; z-index: 0;"></div>
-                        
-                        <i class="bi bi-bell" style="font-size: 3rem; color: #6C4E3F; z-index: 1;"></i>
-                        <h3 style="color: #3d2817; margin: 0; font-weight: 600; z-index: 1;">Notifikasi</h3>
-                        <p style="color: #8B6354; font-size: 0.85rem; margin: 0; z-index: 1;">Lihat pemberitahuan dan update</p>
+                    <a href="{{ route('notif.read') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
+                        <i class="bi bi-bell" style="font-size: 3rem; color: #6C4E3F;"></i>
+                        <h3 style="color: #3d2817; margin: 0;">Notifikasi</h3>
+                        <p style="color: #8B6354; font-size: 0.85rem;">Lihat pemberitahuan dan update</p>
                     </a>
                 </div>
 
-                <!-- Riwayat -->
                 <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('riwayat.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; text-decoration: none; color: inherit; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(108, 78, 63, 0.1) 0%, rgba(201, 165, 140, 0.1) 100%); opacity: 0; transition: opacity 0.3s ease; z-index: 0;"></div>
-                        
-                        <i class="bi bi-clock-history" style="font-size: 3rem; color: #6C4E3F; z-index: 1;"></i>
-                        <h3 style="color: #3d2817; margin: 0; font-weight: 600; z-index: 1;">Riwayat</h3>
-                        <p style="color: #8B6354; font-size: 0.85rem; margin: 0; z-index: 1;">Lihat riwayat aktivitas Anda</p>
+                    <a href="{{ route('riwayat.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
+                        <i class="bi bi-clock-history" style="font-size: 3rem; color: #6C4E3F;"></i>
+                        <h3 style="color: #3d2817; margin: 0;">Riwayat</h3>
+                        <p style="color: #8B6354; font-size: 0.85rem;">Lihat riwayat aktivitas Anda</p>
                     </a>
                 </div>
             </div>
@@ -161,22 +139,27 @@
             
             <div class="row g-2">
                 <div class="col-6 col-md-3">
-                    <a href="{{ route('peminjam.browse.index') }}" class="quick-action-btn" style="background: linear-gradient(135deg, #6C4E3F 0%, #8B6354 100%); color: white; border: none; padding: 0.75rem 1rem; border-radius: 10px; text-align: center; text-decoration: none; display: block; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">
+                    <a href="{{ route('peminjam.browse.index') }}" class="quick-action-btn" style="background: linear-gradient(135deg, #6C4E3F 0%, #8B6354 100%); color: white; padding: 0.75rem 1rem; border-radius: 10px; display: block; text-align: center; font-weight: 600;">
                         <i class="bi bi-plus-circle"></i> Cari Kendaraan Baru
                     </a>
                 </div>
                 <div class="col-6 col-md-3">
-                    <a href="{{ route('peminjam.peminjaman.index') }}" class="quick-action-btn" style="background: #E7D6C8; color: #3d2817; border: none; padding: 0.75rem 1rem; border-radius: 10px; text-align: center; text-decoration: none; display: block; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">
+                    <a href="{{ route('peminjam.peminjaman.index') }}" class="quick-action-btn" style="background: #E7D6C8; color: #3d2817; padding: 0.75rem 1rem; border-radius: 10px; display: block; text-align: center; font-weight: 600;">
                         <i class="bi bi-eye"></i> Lihat Status Pinjam
                     </a>
                 </div>
                 <div class="col-6 col-md-3">
-                    <a href="{{ route('peminjam.pembayaran.index') }}" class="quick-action-btn" style="background: #E7D6C8; color: #3d2817; border: none; padding: 0.75rem 1rem; border-radius: 10px; text-align: center; text-decoration: none; display: block; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">
+                    <a href="{{ route('peminjam.peminjaman.index') }}" class="quick-action-btn" style="background: #E7D6C8; color: #3d2817; padding: 0.75rem 1rem; border-radius: 10px; display: block; text-align: center; font-weight: 600;">
                         <i class="bi bi-cash"></i> Bayar Tagihan
                     </a>
                 </div>
                 <div class="col-6 col-md-3">
-                    <a href="{{ route('peminjam.browse.index') }}" class="quick-action-btn" style="background: #E7D6C8; color: #3d2817; border: none; padding: 0.75rem 1rem; border-radius: 10px; text-align: center; text-decoration: none; display: block; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">
+                <a href="{{ route('chat.index') }}">
+                    <i class="bi bi-chat-dots"></i> Chat
+                </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="{{ route('support') }}" class="quick-action-btn" style="background: #E7D6C8; color: #3d2817; padding: 0.75rem 1rem; border-radius: 10px; display: block; text-align: center; font-weight: 600;">
                         <i class="bi bi-telephone"></i> Hubungi Support
                     </a>
                 </div>
@@ -184,6 +167,7 @@
         </div>
     </div>
 </div>
+@endsection
 
 <style>
     .stat-card:hover {

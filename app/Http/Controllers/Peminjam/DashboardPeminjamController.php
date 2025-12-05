@@ -13,11 +13,14 @@ class DashboardPeminjamController extends Controller
     {
         $id = auth()->id();
 
+        // ambil semua id peminjaman milik user
+        $peminjamanIds = Peminjaman::where('id_peminjam', $id)->pluck('id_peminjaman');
+
         return view('peminjam.dashboard.index', [
-            'totalPinjam' => Peminjaman::where('id_peminjam', $id)->count(),
-            'totalPay'    => Pembayaran::where('id_peminjam', $id)->count(),
-            'totalChat'   => Chat::where('receiver_id', $id)->orWhere('sender_id', $id)->count(),
-            'lastStatus'  => Peminjaman::where('id_peminjam', $id)->latest()->value('status'),
+            'totalPinjam' => $peminjamanIds->count(),
+            'totalPay'    => Pembayaran::whereIn('id_peminjaman', $peminjamanIds)->count(),
+            'totalChat'   => Chat::where('id_penerima', $id)->orWhere('id_pengirim', $id)->count(),
+            'lastStatus'  => Peminjaman::where('id_peminjam', $id)->latest()->value('status_peminjaman'),
         ]);
     }
 }
