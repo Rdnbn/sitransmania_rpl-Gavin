@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h3 class="fw-bold mb-3">Live Map • {{ $kendaraan->tipe }} ({{ $kendaraan->plat_nomor }})</h3>
+<h3 class="fw-bold mb-3">Live Map • {{ $kendaraan->nama_kendaraan }} ({{ $kendaraan->jenis_kendaraan }})</h3>
 
 <div id="map" style="height: 70vh; border-radius:10px;" class="shadow"></div>
 

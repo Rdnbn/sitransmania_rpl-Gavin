@@ -13,7 +13,7 @@
     <form action="{{ route('pemilik.kendaraan.update', $kendaraan->id_kendaraan) }}" method="POST">
         @csrf
 
-        <h5>{{ $kendaraan->tipe }} — {{ $kendaraan->plat_nomor }}</h5>
+        <h5>{{ $kendaraan->nama_kendaraan }} — {{ $kendaraan->jenis_kendaraan }}</h5>
 
         {{-- STATUS --}}
         <div class="mb-3">

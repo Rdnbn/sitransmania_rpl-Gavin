@@ -26,35 +26,39 @@ class KendaraanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipe'        => 'required',
-            'merk'        => 'required',
-            'plat_nomor'  => 'required|unique:kendaraan',
-            'harga_sewa'  => 'required|numeric',
-            'status'      => 'required',
-            'deskripsi'   => 'nullable',
-            'foto'        => 'image|mimes:jpg,jpeg,png|max:2048'
+            'jenis_kendaraan'    => 'required|in:sepeda,motor,motor_helm',
+            'nama_kendaraan'     => 'required',
+            'spesifikasi'        => 'nullable',
+            'status'             => 'required|in:tersedia,tidak_tersedia,tidak_aktif',
+            'foto_kendaraan'     => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
         // HANDLE UPLOAD FOTO
         $fotoName = null;
-        if ($request->hasFile('foto')) {
-            $fotoName = time() . '_' . $request->foto->getClientOriginalName();
-            $request->foto->move(public_path('uploads/kendaraan'), $fotoName);
+        if ($request->hasFile('foto_kendaraan')) {
+            $fotoName = time() . '_' . $request->foto_kendaraan->getClientOriginalName();
+            $request->foto_kendaraan->move(public_path('uploads/kendaraan'), $fotoName);
         }
 
         // SIMPAN DATABASE
         Kendaraan::create([
-            'id_pemilik'  => auth()->id(),
-            'tipe'        => $request->tipe,
-            'merk'        => $request->merk,
-            'plat_nomor'  => $request->plat_nomor,
-            'harga_sewa'  => $request->harga_sewa,
-            'status'      => $request->status,
-            'deskripsi'   => $request->deskripsi,
-            'foto'        => $fotoName
+            'id_pemilik'         => auth()->id(),
+            'jenis_kendaraan'    => $request->jenis_kendaraan,
+            'nama_kendaraan'     => $request->nama_kendaraan,
+            'spesifikasi'        => $request->spesifikasi,
+            'foto_kendaraan'     => $fotoName,
+            'status'             => $request->status
         ]);
 
-        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil ditambahkan!');
+        return redirect()->route('pemilik.kendaraan.index')->with('success', 'Kendaraan berhasil ditambahkan!');
+    }
+
+    // FORM EDIT
+    public function show($id)
+    {
+        $kendaraan = Kendaraan::where('id_pemilik', auth()->id())->findOrFail($id);
+
+        return view('pemilik.kendaraan.show', compact('kendaraan'));
     }
 
     // FORM EDIT
@@ -71,38 +75,34 @@ class KendaraanController extends Controller
         $kendaraan = Kendaraan::where('id_pemilik', auth()->id())->findOrFail($id);
 
         $request->validate([
-            'tipe'        => 'required',
-            'merk'        => 'required',
-            'plat_nomor'  => 'required|unique:kendaraan,plat_nomor,' . $id . ',id_kendaraan',
-            'harga_sewa'  => 'required|numeric',
-            'status'      => 'required',
-            'deskripsi'   => 'nullable',
-            'foto'        => 'image|mimes:jpg,jpeg,png|max:2048'
+            'jenis_kendaraan'    => 'required|in:sepeda,motor,motor_helm',
+            'nama_kendaraan'     => 'required',
+            'spesifikasi'        => 'nullable',
+            'status'             => 'required|in:tersedia,tidak_tersedia,tidak_aktif',
+            'foto_kendaraan'     => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
         // FOTO BARU
-        if ($request->hasFile('foto')) {
-            if ($kendaraan->foto && file_exists(public_path('uploads/kendaraan/' . $kendaraan->foto))) {
-                unlink(public_path('uploads/kendaraan/' . $kendaraan->foto));
+        if ($request->hasFile('foto_kendaraan')) {
+            if ($kendaraan->foto_kendaraan && file_exists(public_path('uploads/kendaraan/' . $kendaraan->foto_kendaraan))) {
+                unlink(public_path('uploads/kendaraan/' . $kendaraan->foto_kendaraan));
             }
 
-            $fotoName = time() . '_' . $request->foto->getClientOriginalName();
-            $request->foto->move(public_path('uploads/kendaraan'), $fotoName);
-            $kendaraan->foto = $fotoName;
+            $fotoName = time() . '_' . $request->foto_kendaraan->getClientOriginalName();
+            $request->foto_kendaraan->move(public_path('uploads/kendaraan'), $fotoName);
+            $kendaraan->foto_kendaraan = $fotoName;
         }
 
         // UPDATE DATA
         $kendaraan->update([
-            'tipe'        => $request->tipe,
-            'merk'        => $request->merk,
-            'plat_nomor'  => $request->plat_nomor,
-            'harga_sewa'  => $request->harga_sewa,
-            'status'      => $request->status,
-            'deskripsi'   => $request->deskripsi,
-            'foto'        => $kendaraan->foto
+            'jenis_kendaraan'    => $request->jenis_kendaraan,
+            'nama_kendaraan'     => $request->nama_kendaraan,
+            'spesifikasi'        => $request->spesifikasi,
+            'status'             => $request->status,
+            'foto_kendaraan'     => $kendaraan->foto_kendaraan
         ]);
 
-        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil diperbarui!');
+        return redirect()->route('pemilik.kendaraan.index')->with('success', 'Kendaraan berhasil diperbarui!');
     }
 
     // HAPUS DATA
@@ -110,12 +110,12 @@ class KendaraanController extends Controller
     {
         $kendaraan = Kendaraan::where('id_pemilik', auth()->id())->findOrFail($id);
 
-        if ($kendaraan->foto && file_exists(public_path('uploads/kendaraan/' . $kendaraan->foto))) {
-            unlink(public_path('uploads/kendaraan/' . $kendaraan->foto));
+        if ($kendaraan->foto_kendaraan && file_exists(public_path('uploads/kendaraan/' . $kendaraan->foto_kendaraan))) {
+            unlink(public_path('uploads/kendaraan/' . $kendaraan->foto_kendaraan));
         }
 
         $kendaraan->delete();
 
-        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil dihapus.');
+        return redirect()->route('pemilik.kendaraan.index')->with('success', 'Kendaraan berhasil dihapus.');
     }
 }

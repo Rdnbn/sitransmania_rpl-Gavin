@@ -8,16 +8,29 @@ class Chat extends Model
 {
     protected $table = 'chat';
     protected $primaryKey = 'id_chat';
+    public $timestamps = false;
 
     protected $fillable = [
-        'chat_room_id',
-        'sender_id',
-        'receiver_id',
-        'pesan'
+        'id_pengirim',
+        'id_penerima',
+        'id_peminjaman',
+        'isi_pesan',
+        'waktu_kirim',
+        'status_baca'
     ];
 
-    public function room()
+    public function pengirim()
     {
-        return $this->belongsTo(ChatRoom::class, 'chat_room_id');
+        return $this->belongsTo(User::class, 'id_pengirim');
+    }
+
+    public function penerima()
+    {
+        return $this->belongsTo(User::class, 'id_penerima');
+    }
+
+    public function peminjaman()
+    {
+        return $this->belongsTo(Peminjaman::class, 'id_peminjaman');
     }
 }

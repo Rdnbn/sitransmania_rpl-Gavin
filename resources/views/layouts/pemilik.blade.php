@@ -1,45 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemilik | @yield('title')</title>
 
-        <a class="navbar-brand" href="{{ route('pemilik.dashboard') }}">
-            SITRANSMANIA Pemilik
-        </a>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- SITRANSMANIA Design System CSS -->
+    <link rel="stylesheet" href="{{ asset('css/sitransmania.css') }}">
+    @stack('styles')
+</head>
 
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#pemilikNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body style="background-color: #F5EFE9;">
+    <div class="d-flex" style="min-height: 100vh;">
+        <!-- Sidebar -->
+        @include('partials.sidebar-pemilik')
 
-        <div class="collapse navbar-collapse" id="pemilikNav">
-            <ul class="navbar-nav ms-auto">
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pemilik.dashboard') }}">Dashboard</a>
-                </li>
+        <!-- Main Content -->
+        <div class="flex-grow-1" style="overflow-y: auto; background-color: #F5EFE9;">
+            <!-- Navbar -->
+            @include('partials.navbar')
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kendaraan.index') }}">Kendaraan Saya</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pemilik.aktivitas.index') }}">Aktivitas</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pemilik.peminjam.index') }}">Peminjam</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pemilik.chat.index') }}">Chat</a>
-                </li>
-
-                <li class="nav-item">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="btn btn-light ms-3">Logout</button>
-                    </form>
-                </li>
-
-            </ul>
+            <!-- Page Content -->
+            <div class="container-fluid py-4">
+                @yield('content')
+            </div>
         </div>
     </div>
-</nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
+</body>
+</html>

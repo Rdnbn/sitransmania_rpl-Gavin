@@ -12,11 +12,16 @@ class Notifikasi extends Model
 
     protected $fillable = [
         'id_user',
+        'id_peminjaman',
         'judul',
         'isi',
         'tipe',
         'status',
         'waktu'
+    ];
+
+    protected $casts = [
+        'waktu' => 'datetime',
     ];
 
     public function user()

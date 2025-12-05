@@ -15,7 +15,7 @@
         <img src="{{ asset('uploads/kendaraan/'.$k->foto) }}" 
              class="img-fluid rounded mb-2" style="height: 180px; object-fit:cover;">
 
-        <h5>{{ $k->tipe }} — {{ $k->plat_nomor }}</h5>
+        <h5>{{ $k->nama_kendaraan }} — {{ $k->jenis_kendaraan }}</h5>
 
         <p class="m-0">Status: 
             <span class="badge 

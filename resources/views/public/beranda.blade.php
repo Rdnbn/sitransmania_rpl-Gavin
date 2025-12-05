@@ -1,4 +1,4 @@
-@extends('layouts.landing')
+@extends('layouts.main')
 
 @section('title', 'Beranda')
 
@@ -17,7 +17,6 @@
             <p class="hero-subtitle">
                 Sistem Layanan Peminjaman Transportasi Antarwarga Asrama Universitas Negeri Malang
             </p>
-
             <a href="{{ route('login') }}" class="btn btn-primary btn-hero">
                 Masuk ke Aplikasi
             </a>

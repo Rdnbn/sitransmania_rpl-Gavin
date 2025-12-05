@@ -21,9 +21,9 @@
         @foreach($transaksi as $t)
         <tr>
             <td>{{ $t->nama }}</td>
-            <td>{{ $t->kendaraan->merk }} ({{ $t->kendaraan->plat_nomor }})</td>
-            <td>{{ $t->status }}</td>
-            <td>{{ $t->pembayaran->status ?? 'Belum Bayar' }}</td>
+            <td>{{ $t->kendaraan->nama_kendaraan }} ({{ $t->kendaraan->jenis_kendaraan }})</td>
+            <td>{{ $t->status_peminjaman }}</td>
+            <td>{{ $t->pembayaran->status_pembayaran ?? 'Belum Bayar' }}</td>
             <td>{{ $t->tanggal_pinjam }} {{ $t->waktu_pinjam }}</td>
         </tr>
         @endforeach

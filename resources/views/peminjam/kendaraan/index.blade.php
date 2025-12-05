@@ -47,9 +47,9 @@
         @endif
 
         <div class="card-body">
-            <h5 class="fw-bold">{{ $k->merk }} ({{ $k->tipe }})</h5>
-            <p class="mb-1">Plat: {{ $k->plat_nomor }}</p>
-            <p class="mb-1">Harga: <b>Rp{{ number_format($k->harga_sewa) }}</b></p>
+            <h5 class="fw-bold">{{ $k->nama_kendaraan }} ({{ $k->jenis_kendaraan }})</h5>
+            <p class="mb-1">Jenis: {{ $k->jenis_kendaraan }}</p>
+            <p class="mb-1">Spesifikasi: {{ $k->spesifikasi }}</p>
 
             <span class="badge bg-info">{{ ucfirst($k->status) }}</span>
 

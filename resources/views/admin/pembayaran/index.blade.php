@@ -25,7 +25,7 @@
             <td>{{ $b->peminjaman->peminjam->nama }}</td>
             <td>{{ $b->peminjaman->kendaraan->pemilik->nama }}</td>
             <td>Rp {{ number_format($b->jumlah,0,',','.') }}</td>
-            <td><span class="badge bg-info">{{ $b->status }}</span></td>
+            <td><span class="badge bg-info">{{ $b->status_pembayaran }}</span></td>
             <td>
                 @if($b->bukti)
                 <a href="{{ asset('uploads/bukti/'.$b->bukti) }}" target="_blank" class="btn btn-sm btn-primary">Lihat</a>

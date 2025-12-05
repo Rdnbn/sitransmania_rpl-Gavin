@@ -17,17 +17,12 @@
                 <div class="p-2 rounded"
                     style="max-width: 70%; background: {{ $msg->id_pengirim == auth()->id() ? '#d1e7dd' : '#f8d7da' }}">
 
-                    @if($msg->pesan)
-                        <p class="mb-1">{{ $msg->pesan }}</p>
-                    @endif
-
-                    @if($msg->file)
-                        <a href="{{ asset('uploads/chat/'.$msg->file) }}"
-                        target="_blank" class="text-primary">📎 Lihat Lampiran</a>
+                    @if($msg->isi_pesan)
+                        <p class="mb-1">{{ $msg->isi_pesan }}</p>
                     @endif
 
                     <div class="text-muted small text-end">
-                        {{ $msg->created_at }}
+                        {{ $msg->waktu_kirim }}
                     </div>
 
                 </div>

@@ -6,6 +6,7 @@ use App\Models\Kendaraan;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use App\Services\NotificationService;
+use App\Services\ActivityService;
 
 class PeminjamanController extends Controller
 {
@@ -38,7 +39,7 @@ class PeminjamanController extends Controller
             'id_peminjam' => auth()->id(),
             'tanggal_pinjam' => $request->tanggal_pinjam,
             'tanggal_kembali' => $request->tanggal_kembali,
-            'status' => 'menunggu_konfirmasi',
+            'status_peminjaman' => 'menunggu',
         ]);
 
         // ================================
@@ -55,7 +56,7 @@ class PeminjamanController extends Controller
         ActivityService::add(
             auth()->id(),
             "Peminjaman Dibuat",
-            "Mengajukan peminjaman kendaraan {$kendaraan->tipe}",
+            "Mengajukan peminjaman kendaraan {$kendaraan->jenis_kendaraan}",
             $pinjam->id_peminjaman
         );
         
@@ -67,13 +68,8 @@ class PeminjamanController extends Controller
     // ================================
     // DETAIL PEMINJAMAN (SEMUA ROLE)
     // ================================
-    public function detail($id_peminjaman)
-    {
-        $pinjam = Peminjaman::with(['kendaraan.pemilik', 'peminjam'])
-            ->findOrFail($id_peminjaman);
-
-        return view('peminjaman.detail', compact('pinjam'));
-    }
+    // Note: This method is not routed to any view and should be removed
+    // public function detail($id_peminjaman) {}
 
 
     // ================================
@@ -86,7 +82,7 @@ class PeminjamanController extends Controller
             ->latest()
             ->get();
 
-        return view('peminjam.peminjaman.riwayat', compact('riwayat'));
+        return view('peminjam.riwayat.index', compact('riwayat'));
     }
 
 
@@ -102,6 +98,6 @@ class PeminjamanController extends Controller
             ->latest()
             ->get();
 
-        return view('pemilik.peminjaman.riwayat', compact('riwayat'));
+        return view('pemilik.riwayat.index', compact('riwayat'));
     }
 }

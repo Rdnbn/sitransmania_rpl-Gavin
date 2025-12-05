@@ -11,7 +11,7 @@
 @foreach($notifikasi as $n)
     <div class="border-bottom py-2">
         <strong>{{ $n->judul }}</strong>
-        <p class="mb-1">{{ $n->pesan }}</p>
+        <p class="mb-1">{{ $n->isi }}</p>
         <small class="text-muted">{{ $n->created_at }}</small>
     </div>
 @endforeach

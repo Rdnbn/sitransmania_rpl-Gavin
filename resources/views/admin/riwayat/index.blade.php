@@ -68,7 +68,7 @@
         <tbody>
             @forelse($riwayat as $r)
                 <tr>
-                    <td>{{ $r->created_at }}</td>
+                    <td>{{ $r->tanggal }}</td>
                     <td>{{ $r->user->nama }} ({{ $r->user->role }})</td>
                     <td>{{ $r->aksi }}</td>
                     <td>{{ $r->deskripsi }}</td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pemilik;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kendaraan;
 
 class AktivitasController extends Controller
 {
@@ -13,6 +14,7 @@ class AktivitasController extends Controller
 
     public function liveMap($id)
     {
-        return view('pemilik.aktivitas.live-map');
+        $kendaraan = Kendaraan::where('id_pemilik', auth()->id())->findOrFail($id);
+        return view('pemilik.livemap.view', compact('kendaraan'));
     }
 }

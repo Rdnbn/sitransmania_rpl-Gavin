@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Data Peminjaman')
 
@@ -25,11 +25,11 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $p->peminjam->nama }}</td>
             <td>{{ $p->kendaraan->pemilik->nama }}</td>
-            <td>{{ $p->kendaraan->tipe }}</td>
+            <td>{{ $p->kendaraan->nama_kendaraan }}</td>
             <td>{{ $p->tanggal_pinjam }}</td>
             <td>{{ $p->tanggal_kembali ?? '-' }}</td>
             <td>
-                <span class="badge bg-primary">{{ $p->status }}</span>
+                <span class="badge bg-primary">{{ $p->status_peminjaman }}</span>
             </td>
         </tr>
         @endforeach

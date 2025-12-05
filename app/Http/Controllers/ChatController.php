@@ -6,6 +6,7 @@ use App\Models\ChatMessage;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use App\Services\NotificationService;
+use App\Services\ActivityService;
 
 class ChatController extends Controller
 {
@@ -38,24 +39,15 @@ class ChatController extends Controller
         $request->validate([
             'id_peminjaman' => 'required',
             'id_penerima'   => 'required',
-            'pesan'         => 'nullable|string',
-            'file'          => 'nullable|file|max:4096'
+            'pesan'         => 'nullable|string'
         ]);
-
-        // Upload file jika ada
-        $fileName = null;
-        if ($request->hasFile('file')) {
-            $fileName = time() . '-' . $request->file->getClientOriginalName();
-            $request->file->move(public_path('uploads/chat'), $fileName);
-        }
 
         // Simpan pesan
         $msg = ChatMessage::create([
             'id_pengirim'   => auth()->id(),
             'id_penerima'   => $request->id_penerima,
             'id_peminjaman' => $request->id_peminjaman,
-            'pesan'         => $request->pesan,
-            'file'          => $fileName,
+            'isi_pesan'     => $request->pesan
         ]);
 
         // ================================

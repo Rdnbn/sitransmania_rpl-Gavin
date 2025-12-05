@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Data Kendaraan')
 
@@ -22,7 +22,7 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $k->pemilik->nama }}</td>
-            <td>{{ $k->tipe }}</td>
+            <td>{{ $k->nama_kendaraan }}</td>
             <td>{{ $k->plat }}</td>
             <td>
                 <span class="badge 

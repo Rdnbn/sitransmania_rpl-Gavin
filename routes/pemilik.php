@@ -19,42 +19,42 @@ use App\Http\Controllers\RiwayatController;
 
         // AKTIVITAS
         Route::get('/aktivitas', [AktivitasController::class, 'index'])
-            ->name('aktivitas.index');
+            ->name('pemilik.aktivitas.index');
 
         Route::get('/aktivitas/lokasi/{id}', [AktivitasController::class, 'liveMap'])
-            ->name('aktivitas.map');
+            ->name('pemilik.aktivitas.map');
 
         // DATA PEMINJAM
         Route::get('/peminjam', [PeminjamController::class, 'index'])
-            ->name('peminjam.index');
+            ->name('pemilik.peminjam.index');
 
         // PEMINJAMAN
         Route::get('/peminjaman', [PeminjamanManageController::class, 'index'])
-            ->name('peminjaman.index');
+            ->name('pemilik.peminjaman.index');
 
         Route::post('/peminjaman/setujui/{id}', [PeminjamanManageController::class, 'setujui'])
-            ->name('peminjaman.setujui');
+            ->name('pemilik.peminjaman.setujui');
 
         Route::post('/peminjaman/tolak/{id}', [PeminjamanManageController::class, 'tolak'])
-            ->name('peminjaman.tolak');
+            ->name('pemilik.peminjaman.tolak');
 
         Route::post('/peminjaman/verifikasi/{id}', [PeminjamanManageController::class, 'verifikasi'])
-            ->name('peminjaman.verifikasi');
+            ->name('pemilik.peminjaman.verifikasi');
 
         Route::post('/peminjaman/status/{id}', [PeminjamanManageController::class, 'updateStatus'])
-            ->name('peminjaman.updateStatus');
+            ->name('pemilik.peminjaman.updateStatus');
 
         // CHAT
         Route::get('/chat', [ChatPemilikController::class, 'index'])
-            ->name('chat.index');
+            ->name('pemilik.chat.index');
 
         Route::get('/chat/{room}', [ChatPemilikController::class, 'show'])
-            ->name('chat.show');
+            ->name('pemilik.chat.show');
 
         // PEMBAYARAN
         Route::get('/pembayaran', [PembayaranPemilikController::class, 'index'])
-            ->name('pembayaran.index');
+            ->name('pemilik.pembayaran.index');
 
         // RIWAYAT
         Route::get('/riwayat', [RiwayatController::class, 'pemilik'])
-            ->name('riwayat');
+            ->name('pemilik.riwayat');

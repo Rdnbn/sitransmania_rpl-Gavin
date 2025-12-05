@@ -25,8 +25,5 @@ class Pembayaran extends Model
         return $this->belongsTo(Peminjaman::class, 'id_peminjaman');
     }
 
-    public function pemilik()
-    {
-        return $this->belongsTo(User::class, 'id_pemilik');
-    }
+
 }

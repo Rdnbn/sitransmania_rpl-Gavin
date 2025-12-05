@@ -17,6 +17,10 @@ class RiwayatAktivitas extends Model
         'kategori'
     ];
 
+    protected $casts = [
+        'tanggal' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');

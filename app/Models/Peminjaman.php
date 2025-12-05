@@ -20,12 +20,15 @@ class Peminjaman extends Model
         'total_biaya'
     ];
 
+    protected $casts = [
+        'tanggal_pinjam' => 'date',
+        'waktu_pinjam' => 'datetime',
+        'tanggal_kembali' => 'date',
+        'waktu_kembali' => 'datetime',
+    ];
+
   public function peminjam() {
     return $this->belongsTo(User::class, 'id_peminjam');
-}
-
-public function pemilik() {
-    return $this->belongsTo(User::class, 'id_pemilik');
 }
 
     public function kendaraan()

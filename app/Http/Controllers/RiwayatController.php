@@ -16,33 +16,33 @@ class RiwayatController extends Controller
     public function admin(Request $request)
     {
         $query = RiwayatAktivitas::with('user')
-            ->orderBy('created_at', 'DESC');
+            ->orderBy('tanggal', 'DESC');
 
         // FILTER USER
         if ($request->filled('user')) {
             $query->where('id_user', $request->user);
         }
 
-        // FILTER AKSI
-        if ($request->filled('aksi')) {
-            $query->where('aksi', $request->aksi);
+        // FILTER KATEGORI
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
         }
 
         // FILTER TANGGAL
         if ($request->filled('tanggal_mulai')) {
-            $query->whereDate('created_at', '>=', $request->tanggal_mulai);
+            $query->whereDate('tanggal', '>=', $request->tanggal_mulai);
         }
 
         if ($request->filled('tanggal_akhir')) {
-            $query->whereDate('created_at', '<=', $request->tanggal_akhir);
+            $query->whereDate('tanggal', '<=', $request->tanggal_akhir);
         }
 
         // PAGINATION
         $riwayat = $query->paginate(15);
 
-        // Dropdown user & aksi
+        // Dropdown user & kategori
         $users = User::orderBy('nama')->get();
-        $aksiList = RiwayatAktivitas::select('aksi')->distinct()->pluck('aksi');
+        $aksiList = RiwayatAktivitas::select('aktivitas')->distinct()->pluck('aktivitas');
 
         return view('admin.riwayat.index', compact('riwayat', 'users', 'aksiList'));
     }
@@ -56,22 +56,22 @@ class RiwayatController extends Controller
     public function pemilik(Request $request)
     {
         $query = RiwayatAktivitas::where('id_user', auth()->id())
-            ->orderBy('created_at', 'DESC');
+            ->orderBy('tanggal', 'DESC');
 
-        if ($request->filled('aksi')) {
-            $query->where('aksi', $request->aksi);
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
         }
 
         if ($request->filled('tanggal_mulai')) {
-            $query->whereDate('created_at', '>=', $request->tanggal_mulai);
+            $query->whereDate('tanggal', '>=', $request->tanggal_mulai);
         }
 
         if ($request->filled('tanggal_akhir')) {
-            $query->whereDate('created_at', '<=', $request->tanggal_akhir);
+            $query->whereDate('tanggal', '<=', $request->tanggal_akhir);
         }
 
         $riwayat = $query->paginate(15);
-        $aksiList = RiwayatAktivitas::select('aksi')->distinct()->pluck('aksi');
+        $aksiList = RiwayatAktivitas::select('aktivitas')->distinct()->pluck('aktivitas');
 
         return view('pemilik.riwayat.index', compact('riwayat', 'aksiList'));
     }
@@ -85,22 +85,22 @@ class RiwayatController extends Controller
     public function peminjam(Request $request)
     {
         $query = RiwayatAktivitas::where('id_user', auth()->id())
-            ->orderBy('created_at', 'DESC');
+            ->orderBy('tanggal', 'DESC');
 
-        if ($request->filled('aksi')) {
-            $query->where('aksi', $request->aksi);
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
         }
 
         if ($request->filled('tanggal_mulai')) {
-            $query->whereDate('created_at', '>=', $request->tanggal_mulai);
+            $query->whereDate('tanggal', '>=', $request->tanggal_mulai);
         }
 
         if ($request->filled('tanggal_akhir')) {
-            $query->whereDate('created_at', '<=', $request->tanggal_akhir);
+            $query->whereDate('tanggal', '<=', $request->tanggal_akhir);
         }
 
         $riwayat = $query->paginate(15);
-        $aksiList = RiwayatAktivitas::select('aksi')->distinct()->pluck('aksi');
+        $aksiList = RiwayatAktivitas::select('aktivitas')->distinct()->pluck('aktivitas');
 
         return view('peminjam.riwayat.index', compact('riwayat', 'aksiList'));
     }

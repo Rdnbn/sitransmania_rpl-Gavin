@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pemilik')
 
 @section('title', 'Riwayat Pembayaran')
 
@@ -23,7 +23,7 @@
         @foreach($riwayat as $r)
             <tr>
                 <td>#{{ $r->id_peminjaman }}</td>
-                <td>{{ $r->peminjaman->kendaraan->tipe }}</td>
+                <td>{{ $r->peminjaman->kendaraan->nama_kendaraan }}</td>
 
                 <td>
                     @if($r->bukti)
@@ -35,10 +35,10 @@
 
                 <td>
                     <span class="badge bg-{{ 
-                        $r->status == 'dibayar' ? 'success' : 
-                        ($r->status == 'menunggu_verifikasi' ? 'warning' : 'danger')
+                        $r->status_pembayaran == 'dibayar' ? 'success' : 
+                        ($r->status_pembayaran == 'menunggu_verifikasi' ? 'warning' : 'danger')
                     }}">
-                        {{ $r->status }}
+                        {{ $r->status_pembayaran }}
                     </span>
                 </td>
 

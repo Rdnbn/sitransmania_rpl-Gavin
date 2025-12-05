@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Laporan Keseluruhan')
 
@@ -75,9 +75,9 @@
         @forelse($peminjaman as $p)
             <tr>
                 <td>{{ $p->peminjam->nama }}</td>
-                <td>{{ $p->kendaraan->tipe }} ({{ $p->kendaraan->plat_nomor }})</td>
+                <td>{{ $p->kendaraan->nama_kendaraan }} ({{ $p->kendaraan->jenis_kendaraan }})</td>
                 <td>{{ $p->created_at }}</td>
-                <td>{{ $p->status }}</td>
+                <td>{{ $p->status_peminjaman }}</td>
             </tr>
         @empty
             <tr>

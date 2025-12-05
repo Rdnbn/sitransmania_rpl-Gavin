@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.peminjam')
 
 @section('title', 'Pembayaran')
 
@@ -48,7 +48,7 @@
     @if($pembayaran)
     <hr>
         <h5>Status Pembayaran:</h5>
-        <span class="badge bg-info text-dark">{{ $pembayaran->status }}</span>
+        <span class="badge bg-info text-dark">{{ $pembayaran->status_pembayaran }}</span>
     @endif
 
 </div>

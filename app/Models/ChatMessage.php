@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * DEPRECATED: Use Chat model instead.
+ * This class is kept for backward compatibility only.
+ */
 class ChatMessage extends Model
 {
     protected $table = 'chat';

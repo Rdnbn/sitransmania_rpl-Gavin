@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pemilik')
 
 @section('title', 'Live Location Kendaraan')
 
@@ -11,7 +11,7 @@
 @else
     @foreach($dipinjam as $item)
         <div class="card p-3 mb-3">
-            <h5>{{ $item->kendaraan->tipe }} — {{ $item->kendaraan->plat_nomor }}</h5>
+            <h5>{{ $item->kendaraan->nama_kendaraan }} — {{ $item->kendaraan->jenis_kendaraan }}</h5>
 
             <a href="{{ route('pemilik.livemap.view', $item->kendaraan->id_kendaraan) }}" 
                class="btn btn-primary mt-2">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Notifikasi Sistem')
 
@@ -24,10 +24,10 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $n->user->nama }}</td>
             <td>{{ $n->judul }}</td>
-            <td>{{ $n->pesan }}</td>
-            <td>{{ $n->created_at }}</td>
+            <td>{{ $n->isi }}</td>
+            <td>{{ $n->waktu }}</td>
             <td>
-                @if($n->is_read)
+                @if($n->status == 'dibaca')
                     <span class="badge bg-success">Dibaca</span>
                 @else
                     <span class="badge bg-danger">Belum Dibaca</span>

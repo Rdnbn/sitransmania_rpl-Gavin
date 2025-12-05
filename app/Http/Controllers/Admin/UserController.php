@@ -42,6 +42,13 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('status', 'User berhasil ditambah!');
     }
 
+    // Tampilkan detail user
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users.show', compact('user'));
+    }
+
     // Tampilkan form edit user
     public function edit($id)
     {

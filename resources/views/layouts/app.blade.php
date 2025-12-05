@@ -6,65 +6,155 @@
     <title>@yield('title') | SITRANSMANIA</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    {{-- Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
+    {{-- Palette SITRANSMANIA --}}
     <style>
-        body { background-color: #f8f4ef; overflow-x: hidden; }
+        :root {
+            --primary: #6C4E3F;
+            --secondary: #C9A58C;
+            --bg-main: #F4ECE6;
+            --accent: #E7D6C8;
+            --text-dark: #3B2A22;
+            --text-muted: #7D6D63;
+        }
 
-        /* Navbar */
-        .navbar-app { background: #8B5E3C; }
-        .navbar-app .nav-link, .navbar-app .navbar-brand { color: #fff !important; font-weight: 600; }
-        .navbar-app .nav-link.active { color: #f5e6d3 !important; }
+        body {
+            background: var(--bg-main);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            font-family: "Poppins", sans-serif;
+        }
 
-        /* Sidebar */
+        /* NAVBAR */
+        .navbar-app {
+            background: var(--primary);
+            border-bottom: 2px solid rgba(0,0,0,.12);
+            padding: 0.75rem 1.2rem;
+        }
+        .navbar-app .nav-link,
+        .navbar-app .navbar-brand {
+            color: white !important;
+            font-weight: 600;
+        }
+        .navbar-app .nav-link:hover {
+            opacity: .85;
+        }
+        .navbar-app .nav-link.active {
+            text-decoration: underline;
+        }
+
+        /* SIDEBAR */
         .sidebar {
-            height: 100vh; width: 250px; position: fixed; top: 0; left: 0;
-            background: linear-gradient(180deg, #A67C52 0%, #F5E6D3 100%);
-            color: #fff; padding-top: 70px; transition: transform 0.3s ease-in-out;
-            z-index: 1000; box-shadow: 2px 0 10px rgba(0,0,0,0.1); overflow-y: auto;
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: var(--primary);
+            padding-top: 75px;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: .3s;
         }
-        .sidebar h5 { padding: 0 20px; margin-bottom: 20px; font-size: 18px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
-        .sidebar a { color: #fff; text-decoration: none; display: block; padding: 12px 20px; border-left: 3px solid transparent; transition: all 0.3s ease; font-size: 14px; }
-        .sidebar a:hover { background-color: rgba(255,255,255,0.2); border-left-color: #fff; padding-left: 25px; }
-        .sidebar a.active { background-color: rgba(255,255,255,0.3); border-left-color: #fff; font-weight: 600; }
+        .sidebar h5 {
+            padding: 0 18px 12px;
+            margin-bottom: 12px;
+            color: var(--accent);
+            border-bottom: 1px solid rgba(255,255,255,.25);
+            font-size: .9rem;
+            font-weight: 700;
+        }
+        .sidebar a {
+            display: block;
+            color: #F1E8E2;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: .92rem;
+            border-left: 3px solid transparent;
+            transition: .25s;
+        }
+        .sidebar a:hover {
+            background: rgba(255,255,255,.15);
+            border-left-color: var(--accent);
+        }
+        .sidebar a.active {
+            background: rgba(255,255,255,.22);
+            border-left-color: white;
+            font-weight: 600;
+            color: white;
+        }
+        .sidebar a i {
+            margin-right: 9px;
+        }
 
-        /* Content */
-        .content { margin-left: 250px; padding: 80px 20px 20px 20px; min-height: 100vh; transition: margin-left 0.3s ease-in-out; }
-
-        /* Toggle sidebar mobile */
+        /* SIDEBAR RESPONSIVE */
         .sidebar-toggle {
-            display: none; position: fixed; top: 10px; left: 10px; z-index: 1030;
-            background: #8B5E3C; border: none; color: white; width: 45px; height: 45px;
-            border-radius: 8px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: none;
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 1050;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 20px;
         }
-        .sidebar-toggle:hover { background: #A67C52; transform: scale(1.05); }
-        .sidebar-toggle i { font-size: 20px; }
-
-        .sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 999; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            z-index: 999;
+            opacity: 0;
+            transition: .25s;
+        }
         .sidebar-overlay.show { display: block; opacity: 1; }
 
         @media (max-width: 768px) {
-            .sidebar { transform: translateX(-100%); }
-            .sidebar.show { transform: translateX(0); }
-            .content { margin-left: 0; padding: 70px 15px 15px 15px; }
-            .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+            .sidebar {
+                transform: translateX(-100%);
+                width: 82%;
+                max-width: 260px;
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            .sidebar-toggle { display: block; }
         }
-        @media (min-width: 769px) and (max-width: 1024px) { .sidebar { width: 220px; } .content { margin-left: 220px; } }
+
+        /* MAIN CONTENT */
+        .content {
+            margin-left: 250px;
+            min-height: 100vh;
+            padding: 85px 22px 25px;
+            transition: .3s;
+        }
+        @media (max-width: 768px) {
+            .content { margin-left: 0; padding: 75px 16px 25px; }
+        }
     </style>
+
     @stack('styles')
 </head>
+
 <body>
 
+{{-- Toggle Sidebar Mobile --}}
 @if(Auth::check())
-    <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
+<button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
 @endif
 
 {{-- Navbar --}}
 @include('layouts.navbar')
 
-{{-- Sidebar --}}
+{{-- Sidebar Based on Role --}}
 @if(Auth::check())
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -77,32 +167,39 @@
     @endif
 @endif
 
-{{-- Main content --}}
+{{-- CONTENT --}}
 <div class="content" id="main-content">
     @yield('content')
 </div>
 
+{{-- JS --}}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-$(document).ready(function() {
+$(function() {
+    const $sidebar = $('.sidebar');
+    const $overlay = $('#sidebarOverlay');
+    const $toggle = $('#sidebarToggle');
+    const $icon = $('#sidebarToggle i');
+
     function closeSidebar() {
-        $('.sidebar').removeClass('show');
-        $('#sidebarOverlay').removeClass('show');
-        $('#sidebarToggle i').removeClass('bi-x-lg').addClass('bi-list');
+        $sidebar.removeClass('show');
+        $overlay.removeClass('show');
+        $icon.removeClass('bi-x-lg').addClass('bi-list');
     }
 
-    $(document).on('click', '#sidebarToggle', function(e) {
+    $toggle.on('click', function(e) {
         e.preventDefault();
-        const $sidebar = $('.sidebar');
-        const $overlay = $('#sidebarOverlay');
-        const $icon = $(this).find('i');
-        if($sidebar.hasClass('show')) { closeSidebar(); } else { $sidebar.addClass('show'); $overlay.addClass('show'); $icon.removeClass('bi-list').addClass('bi-x-lg'); }
+        if($sidebar.hasClass('show')) { closeSidebar(); }
+        else {
+            $sidebar.addClass('show');
+            $overlay.addClass('show');
+            $icon.removeClass('bi-list').addClass('bi-x-lg');
+        }
     });
 
-    $(document).on('click', '#sidebarOverlay', closeSidebar);
-    $(document).on('click', '.sidebar a', function(){ if($(window).width() <= 768) setTimeout(closeSidebar, 100); });
+    $overlay.on('click', closeSidebar);
     $(window).on('resize', function(){ if($(window).width() > 768) closeSidebar(); });
 });
 </script>

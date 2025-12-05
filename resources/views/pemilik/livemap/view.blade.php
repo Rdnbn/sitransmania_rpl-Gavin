@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.pemilik')
 
 @section('title', 'Live Map')
 
 @section('content')
 
 <h3 class="fw-bold mb-3">
-    Live Location: {{ $kendaraan->tipe }} ({{ $kendaraan->plat_nomor }})
+    Live Location: {{ $kendaraan->nama_kendaraan }} ({{ $kendaraan->jenis_kendaraan }})
 </h3>
 
 <div id="map" style="height: 450px; border-radius: 10px;"></div>

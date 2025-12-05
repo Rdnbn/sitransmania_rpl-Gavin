@@ -18,7 +18,7 @@
 
     <h5 class="fw-bold">Kendaraan</h5>
     @forelse($result['kendaraan'] ?? [] as $k)
-        <div class="p-2 border rounded mb-2">{{ $k->tipe }} — {{ $k->plat_nomor }}</div>
+        <div class="p-2 border rounded mb-2">{{ $k->nama_kendaraan }} — {{ $k->jenis_kendaraan }}</div>
     @empty
         <p class="text-muted">Tidak ditemukan.</p>
     @endforelse
@@ -36,7 +36,7 @@
         <h5 class="fw-bold">Peminjaman</h5>
         @forelse($result['peminjaman'] ?? [] as $p)
             <div class="p-2 border rounded mb-2">
-                {{ $p->peminjam->nama }} meminjam {{ $p->kendaraan->tipe }}
+                {{ $p->peminjam->nama }} meminjam {{ $p->kendaraan->nama_kendaraan }} ({{ $p->kendaraan->jenis_kendaraan }})
             </div>
         @empty
             <p class="text-muted">Tidak ditemukan.</p>
@@ -48,7 +48,7 @@
         <h5 class="fw-bold">Pembayaran</h5>
         @forelse($result['pembayaran'] ?? [] as $b)
             <div class="p-2 border rounded mb-2">
-                Status: {{ $b->status }} — Peminjaman #{{ $b->id_peminjaman }}
+                Status: {{ $b->status_pembayaran }} — Peminjaman #{{ $b->id_peminjaman }}
             </div>
         @empty
             <p class="text-muted">Tidak ditemukan.</p>

@@ -21,12 +21,12 @@
     <tbody>
         @foreach($peminjaman as $p)
         <tr>
-            <td>{{ $p->kendaraan->merk }} ({{ $p->kendaraan->plat_nomor }})</td>
-            <td>{{ $p->nama }}<br>{{ $p->no_telp }}</td>
+            <td>{{ $p->kendaraan->nama_kendaraan }} ({{ $p->kendaraan->jenis_kendaraan }})</td>
+            <td>{{ $p->peminjam->nama ?? 'N/A' }}<br>{{ $p->peminjam->no_telp ?? 'N/A' }}</td>
             <td>{{ $p->tanggal_pinjam }} {{ $p->waktu_pinjam }}</td>
 
             <td>
-                <span class="badge bg-info">{{ ucfirst($p->status) }}</span>
+                <span class="badge bg-info">{{ ucfirst($p->status_peminjaman) }}</span>
             </td>
 
             <td>
@@ -44,7 +44,7 @@
             <x-error />
 
                 {{-- SETUJUI --}}
-                @if($p->status == 'menunggu')
+                @if($p->status_peminjaman == 'menunggu')
                     <form action="{{ route('pemilik.peminjaman.setujui', $p->id_peminjaman) }}" method="POST" class="d-inline">
                         @csrf
                         <button class="btn btn-success btn-sm">Setujui</button>
@@ -57,7 +57,7 @@
                 @endif
 
                 {{-- VERIFIKASI PEMBAYARAN --}}
-                @if($p->status == 'disetujui' && $p->pembayaran && $p->pembayaran->status == 'DP')
+                @if($p->status_peminjaman == 'disetujui' && $p->pembayaran && $p->pembayaran->status_pembayaran == 'DP')
                     <form action="{{ route('pemilik.peminjaman.verifikasi', $p->id_peminjaman) }}" method="POST" class="d-inline mt-1">
                         @csrf
                         <button class="btn btn-warning btn-sm">Verifikasi Pembayaran</button>
@@ -65,7 +65,7 @@
                 @endif
 
                 {{-- UPDATE STATUS PENGGUNAAN --}}
-                @if($p->status == 'dibayar')
+                @if($p->status_peminjaman == 'dibayar')
                     <form action="{{ route('pemilik.peminjaman.updateStatus', $p->id_peminjaman) }}" method="POST" class="d-inline mt-1">
                         @csrf
                         <input type="hidden" name="status" value="dipinjam">
@@ -74,7 +74,7 @@
                 @endif
 
                 {{-- SELESAI --}}
-                @if($p->status == 'dipinjam')
+                @if($p->status_peminjaman == 'dipinjam')
                     <form action="{{ route('pemilik.peminjaman.updateStatus', $p->id_peminjaman) }}" method="POST" class="d-inline mt-1">
                         @csrf
                         <input type="hidden" name="status" value="selesai">

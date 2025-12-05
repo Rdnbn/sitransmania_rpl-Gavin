@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Peminjam;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kendaraan;
 
 class BrowseKendaraanController extends Controller
 {
     public function index()
     {
-        return view('peminjam.browse.index');
+        $kendaraan = Kendaraan::where('status', 'tersedia')->get();
+        return view('peminjam.browse.index', compact('kendaraan'));
     }
 
     public function detail($id)
     {
-        return view('peminjam.browse.detail');
+        $kendaraan = Kendaraan::findOrFail($id);
+        return view('peminjam.kendaraan.show', compact('kendaraan'));
     }
 }

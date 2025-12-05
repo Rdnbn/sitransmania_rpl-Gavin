@@ -28,14 +28,12 @@ class PemilikKendaraanController extends Controller
                         ->findOrFail($id);
 
         $request->validate([
-            'status' => 'required|in:tersedia,tidak tersedia,tidak aktif',
-            'keterangan' => 'nullable|string',
+            'status' => 'required|in:tersedia,tidak_tersedia,tidak_aktif',
             'tanggal_tersedia' => 'nullable|date'
         ]);
 
         $kendaraan->update([
             'status' => $request->status,
-            'keterangan' => $request->keterangan,
             'tanggal_tersedia' => $request->tanggal_tersedia
         ]);
 
