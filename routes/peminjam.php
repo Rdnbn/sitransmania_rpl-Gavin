@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Peminjam\BrowseKendaraanController;
 use App\Http\Controllers\Peminjam\PeminjamanController;
 use App\Http\Controllers\Peminjam\PembayaranController;
-use App\Http\Controllers\Peminjam\ChatPeminjamController;
 use App\Http\Controllers\Peminjam\DashboardPeminjamController;
 use App\Http\Controllers\RiwayatController;
 
@@ -36,13 +35,6 @@ use App\Http\Controllers\RiwayatController;
 
         Route::post('/pembayaran/upload', [PembayaranController::class, 'upload'])
             ->name('peminjam.pembayaran.upload');
-
-        // CHAT
-        Route::get('/chat', [ChatPeminjamController::class, 'index'])
-            ->name('peminjam.chat.index');
-
-        Route::get('/chat/{room}', [ChatPeminjamController::class, 'show'])
-            ->name('peminjam.chat.show');
 
         // RIWAYAT
         Route::get('/riwayat', [RiwayatController::class, 'peminjam'])

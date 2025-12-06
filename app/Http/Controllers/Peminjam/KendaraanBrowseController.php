@@ -36,10 +36,15 @@ class KendaraanBrowseController extends Controller
     }
 
     // DETAIL KENDARAAN
-    public function show($id)
-    {
-        $kendaraan = Kendaraan::with('pemilik')->findOrFail($id);
+ public function show($id)
+{
+    // Load pemilik + profil pemilik (tersedia no_telp)
+    $kendaraan = Kendaraan::with(['pemilik.profile', 'lokasi'])->findOrFail($id);
 
-        return view('peminjam.kendaraan.show', compact('kendaraan'));
-    }
+    // Nomor WhatsApp pemilik
+    $noWa = $kendaraan->pemilik->profile->no_telp ?? null;
+
+    return view('peminjam.kendaraan.show', compact('kendaraan', 'noWa'));
+}
+
 }

@@ -50,4 +50,8 @@ class Peminjaman extends Model
     {
         return $this->hasMany(Notifikasi::class, 'id_peminjaman');
     }
+    public function pengguna()
+    {
+    return $this->belongsTo(User::class, 'id_peminjam');
+    }
 }

@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(RiwayatAktivitas::class, 'id_user');
     }
+    public function profile()
+    {
+    return $this->hasOne(UserProfile::class, 'id_user');
+    }
+
 }

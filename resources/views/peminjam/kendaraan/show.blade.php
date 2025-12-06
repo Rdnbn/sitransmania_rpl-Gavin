@@ -144,20 +144,20 @@
                 </div>
 
                 <!-- Action Buttons -->
-                <div style="background: white; border-radius: 15px; padding: 2rem; box-shadow: 0 2px 8px rgba(108, 78, 63, 0.1); margin-bottom: 2rem;">
-                    <h3 style="color: #3d2817; font-weight: 700; margin-bottom: 1.5rem;">
-                        <i class="bi bi-lightning-fill"></i> Aksi
-                    </h3>
+                @if($waLink)
+    <a href="{{ $waLink }}" target="_blank"
+       class="action-btn"
+       style="background: #25D366; color: white; border: none; padding: 1rem 1.5rem; border-radius: 10px; text-align: center; text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: block;">
+        <i class="bi bi-whatsapp"></i> Chat via WhatsApp
+    </a>
+@else
+    <button disabled
+        class="action-btn"
+        style="background: #ccc; color: #666; padding: 1rem 1.5rem; border-radius: 10px; text-align: center; font-weight: 600; font-size: 0.95rem; display: block; cursor: not-allowed;">
+        <i class="bi bi-whatsapp"></i> Nomor WA Tidak Tersedia
+    </button>
+@endif
 
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <a href="{{ route('peminjam.pinjam.form', $kendaraan->id_kendaraan) }}" class="action-btn" style="background: linear-gradient(135deg, #6C4E3F 0%, #8B6354 100%); color: white; border: none; padding: 1rem 1.5rem; border-radius: 10px; text-align: center; text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: block;">
-                            <i class="bi bi-check-circle"></i> Ajukan Peminjaman
-                        </a>
-                        <a href="{{ route('chat.room', 1) }}" class="action-btn" style="background: #E7D6C8; color: #3d2817; border: none; padding: 1rem 1.5rem; border-radius: 10px; text-align: center; text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: block;">
-                            <i class="bi bi-chat-left-dots"></i> Chat dengan Pemilik
-                        </a>
-                    </div>
-                </div>
 
                 <!-- Quick Info -->
                 <div style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 1.5rem;">

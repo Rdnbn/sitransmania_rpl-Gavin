@@ -43,12 +43,6 @@
                 <x-flash />
                 <x-error />
 
-                {{-- BUTTON CHAT --}}
-                <a href="{{ route('chat.room', $p->id_peminjaman) }}"
-                    class="btn btn-outline-primary btn-sm mb-1">
-                    <i class="bi bi-chat-dots"></i> Chat
-                </a>
-
                 {{-- SETUJUI --}}
                 @if($p->status_peminjaman == 'menunggu')
                     <form action="{{ route('pemilik.peminjaman.setujui', $p->id_peminjaman) }}" method="POST" class="d-inline">

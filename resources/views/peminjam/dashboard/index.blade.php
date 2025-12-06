@@ -40,19 +40,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3 col-sm-6">
-                <div class="stat-card" style="background: white; border-left: 4px solid #E7D6C8; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(108, 78, 63, 0.1); transition: all 0.3s ease;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <div>
-                            <p style="color: #8B6354; font-size: 0.85rem; margin: 0 0 0.5rem 0; font-weight: 500;">Total Chat</p>
-                            <h3 style="color: #3d2817; font-size: 2rem; margin: 0;">{{ $totalChat }}</h3>
-                        </div>
-                        <i class="bi bi-chat-dots" style="font-size: 2rem; color: #C9A58C; opacity: 0.8;"></i>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-md-3 col-sm-6">
                 <div class="stat-card" style="background: white; border-left: 4px solid #6C4E3F; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(108, 78, 63, 0.1); transition: all 0.3s ease;">
                     <div style="display: flex; justify-content: space-between;">
@@ -104,25 +91,8 @@
                         <p style="color: #8B6354; font-size: 0.85rem;">Kelola pembayaran dan tagihan</p>
                     </a>
                 </div>
-
                 <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('chat.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
-                        <i class="bi bi-chat-left-dots" style="font-size: 3rem; color: #6C4E3F;"></i>
-                        <h3 style="color: #3d2817; margin: 0;">Chat</h3>
-                        <p style="color: #8B6354; font-size: 0.85rem;">Komunikasi dengan pemilik kendaraan</p>
-                    </a>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('notif.read') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
-                        <i class="bi bi-bell" style="font-size: 3rem; color: #6C4E3F;"></i>
-                        <h3 style="color: #3d2817; margin: 0;">Notifikasi</h3>
-                        <p style="color: #8B6354; font-size: 0.85rem;">Lihat pemberitahuan dan update</p>
-                    </a>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <a href="{{ route('riwayat.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
+                    <a href="{{ route('riwayat.peminjam.index') }}" class="dashboard-card" style="background: linear-gradient(135deg, rgba(108, 78, 63, 0.05) 0%, rgba(201, 165, 140, 0.05) 100%); border: 2px solid #E7D6C8; border-radius: 15px; padding: 2rem; text-align: center; cursor: pointer;">
                         <i class="bi bi-clock-history" style="font-size: 3rem; color: #6C4E3F;"></i>
                         <h3 style="color: #3d2817; margin: 0;">Riwayat</h3>
                         <p style="color: #8B6354; font-size: 0.85rem;">Lihat riwayat aktivitas Anda</p>

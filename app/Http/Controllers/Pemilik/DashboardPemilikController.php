@@ -23,7 +23,6 @@ class DashboardPemilikController extends Controller
             'totalPay'       => Pembayaran::whereHas('peminjaman', function ($query) use ($kendaraanIds) {
                 $query->whereIn('id_kendaraan', $kendaraanIds);
             })->count(),
-            'totalChat'      => ChatMessage::where('id_penerima', $pemilikId)->orWhere('id_pengirim', $pemilikId)->count(),
         ]);
     }
 }

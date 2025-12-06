@@ -5,7 +5,6 @@ use App\Http\Controllers\Pemilik\DashboardPemilikController;
 use App\Http\Controllers\Pemilik\KendaraanController;
 use App\Http\Controllers\Pemilik\AktivitasController;
 use App\Http\Controllers\Pemilik\PeminjamController;
-use App\Http\Controllers\Pemilik\ChatPemilikController;
 use App\Http\Controllers\Pemilik\PembayaranPemilikController;
 use App\Http\Controllers\Pemilik\PeminjamanManageController;
 use App\Http\Controllers\RiwayatController;
@@ -44,12 +43,6 @@ use App\Http\Controllers\RiwayatController;
         Route::post('/peminjaman/status/{id}', [PeminjamanManageController::class, 'updateStatus'])
             ->name('pemilik.peminjaman.updateStatus');
 
-        // CHAT
-        Route::get('/chat', [ChatPemilikController::class, 'index'])
-            ->name('pemilik.chat.index');
-
-        Route::get('/chat/{room}', [ChatPemilikController::class, 'show'])
-            ->name('pemilik.chat.show');
 
         // PEMBAYARAN
         Route::get('/pembayaran', [PembayaranPemilikController::class, 'index'])

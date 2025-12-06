@@ -74,4 +74,13 @@ class PeminjamanController extends Controller
         return redirect()->route('peminjam.dashboard')
             ->with('success', 'Permintaan peminjaman berhasil dikirim! Silakan menunggu persetujuan pemilik.');
     }
+    public function show($id)
+    {
+    $peminjaman = Peminjaman::with(['kendaraan.pemilik.profile'])->findOrFail($id);
+
+    $noWa = $peminjaman->kendaraan->pemilik->profile->no_telp;
+
+    return view('peminjam.peminjaman.show', compact('peminjaman', 'noWa'));
+    }
+
 }

@@ -28,10 +28,6 @@
 
     <a href="{{ route('admin.notifikasi.index') }}" class="sidebar-link {{ request()->routeIs('admin.notifikasi.*') ? 'active' : '' }}">
         <i class="bi bi-bell me-2"></i> Notifikasi
-   <a href="{{ route('chat.index') }}" class="btn btn-outline-secondary">
-    <i class="bi bi-chat-dots"></i> Buka Chat
-</a>
-
 
     <a href="{{ route('profile') }}" class="sidebar-link {{ request()->routeIs('profile') ? 'active' : '' }}">
     <i class="bi bi-person-circle me-2"></i> Profil

@@ -27,19 +27,9 @@
     <a href="{{ route('pemilik.pembayaran.index') }}" class="{{ request()->routeIs('pemilik.pembayaran.*') ? 'active' : '' }}" style="color: rgba(255, 255, 255, 0.85); display: block; padding: 12px 20px; border-left: 3px solid transparent; transition: all 0.3s ease; text-decoration: none;">
         <i class="bi bi-cash-stack me-2"></i> Pembayaran
     </a>
-    
-    <a href="{{ route('pemilik.chat.index') }}" class="{{ request()->routeIs('pemilik.chat.*') ? 'active' : '' }}" style="color: rgba(255, 255, 255, 0.85); display: block; padding: 12px 20px; border-left: 3px solid transparent; transition: all 0.3s ease; text-decoration: none;">
-        <i class="bi bi-chat-dots me-2"></i> Chat
-    </a>
-    
     <a href="{{ route('pemilik.riwayat') }}" class="{{ request()->routeIs('pemilik.riwayat') ? 'active' : '' }}" style="color: rgba(255, 255, 255, 0.85); display: block; padding: 12px 20px; border-left: 3px solid transparent; transition: all 0.3s ease; text-decoration: none;">
         <i class="bi bi-clock-history me-2"></i> Riwayat
     </a>
-   <a href="{{ route('chat.index') }}" class="btn btn-outline-secondary">
-    <i class="bi bi-chat-dots"></i> Buka Chat
-</a>
-
-
     <a href="{{ route('profile') }}" class="sidebar-link {{ request()->routeIs('profile') ? 'active' : '' }}">
     <i class="bi bi-person-circle me-2"></i> Profil
 </a>

@@ -74,11 +74,12 @@
         </div>
     </div>
 
-    {{-- Grafik --}}
-    <div class="card shadow-sm p-4 mb-4">
-        <h5 class="mb-3 fw-semibold text-dark">Grafik Peminjaman Tahun {{ date('Y') }}</h5>
-        <canvas id="chartPeminjaman" height="200"></canvas>
-    </div>
+   <!-- Grafik -->
+<div class="card shadow-sm p-4 mb-4">
+    <h5 class="mb-3 fw-semibold text-dark">Grafik Peminjaman Tahun {{ date('Y') }}</h5>
+    <canvas id="chartPeminjaman" height="200"></canvas>
+</div>
+
 
     {{-- Aktivitas Terbaru --}}
     <div class="card shadow-sm p-3">
