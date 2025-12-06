@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($pembayaran as $b)
+     @foreach($pembayaran as $b)
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $b->peminjaman->peminjam->nama }}</td>
